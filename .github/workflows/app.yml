@@ -1,0 +1,31 @@
+name: Test Endpoint with Axios
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-axios:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run server in background
+        run: |
+          nohup node index.js & sleep 3
+
+      - name: Test Axios Endpoint
+        run: |
+          curl -s http://localhost:3000/cep_axios/01001000 | grep '"cep":"01001-000"'
