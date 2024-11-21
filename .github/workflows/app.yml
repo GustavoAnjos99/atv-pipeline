@@ -30,7 +30,7 @@ jobs:
         run: |
           resposta=$(curl -s "https://viacep.com.br/ws/08161360/json/")
           if echo "$resposta" | grep -q '"logradouro"'; then
-            echo "CEP buscado com sucesso"
+            echo "$resposta"
           else
             echo "Erro ao buscar cep"
             exit 1
