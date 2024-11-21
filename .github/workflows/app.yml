@@ -1,4 +1,4 @@
-name: Test Endpoint with Axios
+name: Teste dos endpoints [AXIOS]
 
 on:
   push:
@@ -11,22 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Verificar repositório
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: Instalar dependências
         run: npm install
 
-      - name: Run server in background
+      - name: Rodar Server
         run: |
-          nohup node index.js & sleep 3
+          nohup node app.js & sleep 3
 
-      - name: Test Axios Endpoint
+      - name: Teste do endpoint
         run: |
           resposta=$(curl -s "https://viacep.com.br/ws/08161360/json/")
           if echo "$resposta" | grep -q '"logradouro"'; then
